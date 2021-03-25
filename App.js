@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import Feed from "./components/Feed";
 import Settings from "./components/Settings";
 import Registration from "./components/Registration";
+import SignIn from "./components/SignIn";
 
 const Stack = createStackNavigator();
 
@@ -21,7 +22,7 @@ class App extends React.Component {
 	<Stack.Navigator>
 	  <Stack.Screen
 	    name="Home"
-	    component={Registration}
+	    component={SignIn}
 	    options={{ title: "Feed" }}
 	  />
 	  <Stack.Screen
@@ -43,6 +44,11 @@ class App extends React.Component {
 	    name="Registration"
 	    component={Registration}
 	    options={{ title: "Registration" }}
+	  />
+	  <Stack.Screen
+	    name="Sign In"
+	    component={SignIn}
+	    options={{ title: "Sign In" }}
 	  />
 	</Stack.Navigator>
       </NavigationContainer>
