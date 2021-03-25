@@ -8,12 +8,12 @@ import { buttonStyle } from "./styles";
 
 function SignIn({ navigation }) {
 
-  const [emailInput,setEmailInput] = useState("");
-  const [passwordsInput,setPasswordInput] = useState("");
+  const [email,setEmailInput] = useState("");
+  const [password,setPasswordInput] = useState("");
   const [error,setError] = useState("");
 
   const submit = () => {
-    const submission = { email, username, password1, password2 }
+    const submission = { email, password }
     postMethodFetch(submission, "/post/sign-in", (res) => {
       console.log(res);
       if (res.valid) {
