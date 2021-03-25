@@ -1,7 +1,9 @@
 import { rem } from "../global-variables";
 
+export const EXTRA_SMALL_TEXT_SIZE = 0.8 * 0.8 * rem;
 export const SMALL_TEXT_SIZE = 0.8 * rem;
 export const TEXT_SIZE = rem;
+export const LARGE_TEXT_SIZE = 1.25 * rem;
 
 export const COLOR_PRIMARY = "#62fc7a";
 export const COLOR_PRIMARY_COMPLEMENT = "#4ae86c";
@@ -35,7 +37,6 @@ export const textSmall = {
 };
 
 export const buttonStyle = {
-  flex: 1,
   fontSize: TEXT_SIZE,
   backgroundColor: COLOR_PRIMARY_COMPLEMENT,
   borderRadius: 0.2 * rem,

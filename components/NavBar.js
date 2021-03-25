@@ -14,6 +14,7 @@ function NavBar({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}><Text style={styles.text}>Settings</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Register")}><Text style={styles.text}>Register</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Sign In")}><Text style={styles.text}>Sign In</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}><Text style={styles.text}>Search</Text></TouchableOpacity>
     </View>
   );
 
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   text: {
-    fontSize: 1 * rem,
+    fontSize: 0.8 * rem,
     textAlign: "center"
   }
 });

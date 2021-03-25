@@ -38,7 +38,7 @@ function Post(props) {
       </View>
 
       <View style={styles.imageContainer}>
-	<Image style={styles.image} source={{ uri: `https://photography-app-content.s3.amazonaws.com/${props.data.ref}` }} />
+	<Image style={styles.image} source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${props.data.ref}` }} />
       </View>
 
       <View style={flexbox} >
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   username: {
+    marginLeft: 0.2 * rem,
     fontSize: rem
   },
   iconsContainer: {
