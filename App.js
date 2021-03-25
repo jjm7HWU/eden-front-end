@@ -10,6 +10,7 @@ import Leaderboard from "./components/Leaderboard";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
 import Settings from "./components/Settings";
+import Registration from "./components/Registration";
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ class App extends React.Component {
 	<Stack.Navigator>
 	  <Stack.Screen
 	    name="Home"
-	    component={Settings}
+	    component={Registration}
 	    options={{ title: "Feed" }}
 	  />
 	  <Stack.Screen
@@ -37,6 +38,11 @@ class App extends React.Component {
 	    name="Settings"
 	    component={Settings}
 	    options={{ title: "Settings" }}
+	  />
+	  <Stack.Screen
+	    name="Registration"
+	    component={Registration}
+	    options={{ title: "Registration" }}
 	  />
 	</Stack.Navigator>
       </NavigationContainer>

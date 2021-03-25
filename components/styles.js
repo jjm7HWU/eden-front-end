@@ -15,7 +15,6 @@ export const flexbox = {
 
 export const textInputStyle = {
   fontSize: SMALL_TEXT_SIZE,
-  textIndent: 0.2 * rem,
   marginBottom: 0.2 * rem,
   backgroundColor: COLOR_EXTRA_LIGHT_GRAY,
   borderColor: COLOR_LIGHT_GRAY,
