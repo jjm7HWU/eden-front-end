@@ -15,20 +15,19 @@ function Leaderboard({ navigation }) {
       .then(data => {
 	setData(data);
 	console.log(data);
-      });
+      })
+      .catch(() => console.log("NETWORK ERROR"));
   }, []);
 
   return (
     <View style={appBodyStyle}>
-      <ScrollView style={scrollViewStyle}>
-	<LeaderboardItem position="" data={{ position: "", username: "Username", points: "Points" }} />
-	<FlatList
-	  data={data}
-	  renderItem={({item, index}) => (
-	      <LeaderboardItem position={index + 1} data={item}/>
-	  )}
-	/>
-      </ScrollView>
+      <LeaderboardItem position="" data={{ position: "", username: "Username", points: "Points" }} />
+      <FlatList
+	data={data}
+	renderItem={({item, index}) => (
+	    <LeaderboardItem position={index + 1} data={item}/>
+	)}
+      />
       <NavBar navigation={navigation} />
     </View>
   );

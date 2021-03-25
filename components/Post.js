@@ -16,13 +16,15 @@ function Post(props) {
     .then(data => {
       console.log(data)
       setComments(data);
-    });
+    })
+    .catch(() => console.log("NETWORK ERROR"));
     fetch(`${DOMAIN_NAME}/api/photo/${props.data.ref}`)
     .then(res => res.json())
     .then(data => {
       setData(data);
       console.log(data);
-    });
+    })
+    .catch(() => console.log("NETWORK ERROR"));
 
   }, []);
 
@@ -52,13 +54,6 @@ function Post(props) {
       </View>
 
       <Text style={textSmall}>{data.caption}</Text>
-
-      <View>
-	<FlatList
-	  data={comments}
-	  renderItem={({item}) => (<Text>comment</Text>)}
-	/>
-      </View>
 
     </View>
   );

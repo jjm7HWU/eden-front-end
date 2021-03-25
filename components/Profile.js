@@ -4,7 +4,7 @@ import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity
 import Post from "./Post";
 import NavBar from "./NavBar";
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
-import { SMALL_TEXT_SIZE, button, flexbox, text, textLarge, textSmall } from "./styles";
+import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
 
 function Profile({ navigation }) {
 
@@ -18,7 +18,7 @@ function Profile({ navigation }) {
   ];
 
   return (
-    <View style={appBodyStyle}>
+    <>
 
       <ScrollView style={scrollViewStyle}>
 
@@ -33,18 +33,17 @@ function Profile({ navigation }) {
 	<View style={flexbox}>
 	  <Text style={styles.text}>132 followers</Text>
 	  <Text style={styles.text}>243 following</Text>
-	  <TouchableOpacity style={button}><Text style={styles.text}>Follow</Text></TouchableOpacity>
+	  <TouchableOpacity style={buttonStyle}><Text style={styles.text}>Follow</Text></TouchableOpacity>
 	</View>
 
-	<FlatList
-	  data={posts}
-	  renderItem={({item, index}) => (<Post data={item} />)}
-	/>
+	{posts.map(item => (
+	  <Post data={item} />
+	))}
 
       </ScrollView>
 
       <NavBar navigation={navigation}/>
-    </View>
+    </>
   );
 }
 

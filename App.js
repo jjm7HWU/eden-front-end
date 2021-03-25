@@ -20,8 +20,8 @@ class App extends React.Component {
 	<Stack.Navigator>
 	  <Stack.Screen
 	    name="Home"
-	    component={Feed}
-	    options={{ title: "Eden" }}
+	    component={Settings}
+	    options={{ title: "Feed" }}
 	  />
 	  <Stack.Screen
 	    name="Leaderboard"

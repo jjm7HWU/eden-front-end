@@ -15,7 +15,8 @@ function Feed({ navigation }) {
       .then(data => {
 	setData(data);
 	console.log(data);
-      });
+      })
+      .catch(() => console.log("NETWORK ERROR"));
   }, []);
 
   const posts = [
