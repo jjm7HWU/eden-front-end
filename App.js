@@ -24,7 +24,7 @@ class App extends React.Component {
 	<Stack.Navigator>
 	  <Stack.Screen
 	    name="Home"
-	    component={Challenges}
+	    component={Feed}
 	    options={{ title: "Challenges" }}
 	  />
 	  <Stack.Screen

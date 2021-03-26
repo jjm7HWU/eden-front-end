@@ -11,6 +11,7 @@ function Post(props) {
   const [comments,setComments] = useState([]);
 
   useEffect(() => {
+    console.log({YUP: props.data.ref})
     fetch(`${DOMAIN_NAME}/api/comments/${props.data.ref}`)
     .then(res => res.json())
     .then(data => {
@@ -38,10 +39,20 @@ function Post(props) {
       </View>
 
       <View style={styles.imageContainer}>
-	<Image style={styles.image} source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${props.data.ref}` }} />
+	<FlatList
+	  data={props.data.refs}
+	  renderItem={({item, index}) => (
+	    <Image
+	      style={styles.image}
+	      source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${item}` }}
+	      key={index}
+	    />
+	  )}
+	  horizontal={true}
+	/>
       </View>
 
-      <View style={flexbox} >
+      <View style={flexbox}>
 	<View style={styles.iconsContainer} >
 	  <Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/comment.svg" }} />
 	  <Text style={styles.iconNumber}>3</Text>
@@ -78,8 +89,8 @@ const styles = StyleSheet.create({
     marginBottom: 0.3 * rem
   },
   image: {
-    width: "100%",
-    height: "100%"
+    width: 10 * rem,
+    height: 10 * rem
   },
   username: {
     marginLeft: 0.2 * rem,

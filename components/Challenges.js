@@ -7,7 +7,7 @@ import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } fro
 
 function Challenges({ navigation }) {
 
-  const [rows,setRows] = useState([[0,0,0], [0,0], [0,0,0,0,0]])
+  const [rows,setRows] = useState([[0,0,0,0,0], [0,0,0], [0,0], [0,0,0,0]])
 
   return (
     <View style={appBodyStyle}>
@@ -17,7 +17,7 @@ function Challenges({ navigation }) {
 	  <>
 	    <Text style={text}>Bugs</Text>
 	    <FlatList
-	      data={[0,0,0]}
+	      data={row}
 	      renderItem={({item}) => <ChallengeCard id={0} />}
 	      horizontal={true}
 	      style={styles.row}
