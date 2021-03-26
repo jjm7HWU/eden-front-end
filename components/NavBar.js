@@ -9,11 +9,10 @@ function NavBar({ navigation }) {
   return (
     <View style={styles.containerStyle}>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Home")}><Text style={styles.text}>Feed</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Leaderboard")}><Text style={styles.text}>Camera</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Profile")}><Text style={styles.text}>Explore</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Leaderboard")}><Text style={styles.text}>Leaderboard</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Profile")}><Text style={styles.text}>Profile</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}><Text style={styles.text}>Settings</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Register")}><Text style={styles.text}>Register</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Sign In")}><Text style={styles.text}>Sign In</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}><Text style={styles.text}>Search</Text></TouchableOpacity>
     </View>
   );
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   text: {
-    fontSize: 0.8 * rem,
+    fontSize: 0.5 * rem,
     textAlign: "center"
   }
 });

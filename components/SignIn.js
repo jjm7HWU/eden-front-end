@@ -3,10 +3,11 @@ import { Button, ScrollView, Text, View } from 'react-native';
 import NavBar from "./NavBar";
 import TextInputPair from "./TextInputPair";
 import { appBodyStyle, scrollViewStyle } from "../global-variables";
+import GLOBAL from "../GLOBAL";
 import { postMethodFetch } from "../functions";
 import { buttonStyle } from "./styles";
 
-function SignIn({ navigation }) {
+function SignIn({ navigation, onSignIn }) {
 
   const [email,setEmailInput] = useState("");
   const [password,setPasswordInput] = useState("");
@@ -14,10 +15,9 @@ function SignIn({ navigation }) {
 
   const submit = () => {
     const submission = { email, password }
-    postMethodFetch(submission, "/post/sign-in", (res) => {
-      console.log(res);
+    postMethodFetch(submission, "/post/sign-in", res => {
       if (res.valid) {
-
+	onSignIn(res.key, res.username);
       }
       else {
 	setError(res.message);

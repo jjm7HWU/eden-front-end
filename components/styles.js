@@ -37,6 +37,7 @@ export const textSmall = {
 };
 
 export const buttonStyle = {
+  flex: 1,
   fontSize: TEXT_SIZE,
   backgroundColor: COLOR_PRIMARY_COMPLEMENT,
   borderRadius: 0.2 * rem,

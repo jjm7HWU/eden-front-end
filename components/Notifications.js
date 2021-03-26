@@ -3,35 +3,28 @@ import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View 
 import { DOMAIN_NAME, appBodyStyle, scrollViewStyle, rem } from "../global-variables";
 import GLOBAL from "../GLOBAL";
 import NavBar from "./NavBar";
+import Notification from "./Notification";
 import Post from "./Post";
 import { postMethodFetch } from "../functions";
 
-function Feed({ navigation }) {
+function Notifications({ navigation }) {
 
-  const [data,setData] = useState([
-    { ref: "953974780674271500" },
-    { ref: "953974780674271500" },
-    { ref: "93727279480472630000" },
-    { ref: "953974780674271500" }
-  ]);
+  const [data,setData] = useState([]);
 
   useEffect(() => {
     const submission = {
       sourceUser: GLOBAL.USERNAME,
       key: GLOBAL.KEY
     }
-    postMethodFetch(submission, "/api_custom/feed", res => {
-      setData(res.feed)
+    postMethodFetch(submission, "/api_custom/notifications", res => {
+      setData(res.unseen)
     });
   }, []);
 
   return (
     <View style={appBodyStyle}>
       <ScrollView style={scrollViewStyle}>
-	<FlatList
-	  data={data}
-	  renderItem={({item, index}) => (<Post navigation={navigation} data={item} />)}
-	/>
+	{data.map(item => <Notification data={item} />)}
       </ScrollView>
       <NavBar navigation={navigation} />
     </View>
@@ -41,4 +34,4 @@ function Feed({ navigation }) {
 const styles = StyleSheet.create({
 });
 
-export default Feed;
+export default Notifications;

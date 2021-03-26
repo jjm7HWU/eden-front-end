@@ -5,7 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View } from 'react-native';
+import GLOBAL from "./GLOBAL";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import Leaderboard from "./components/Leaderboard";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
@@ -14,6 +16,7 @@ import Registration from "./components/Registration";
 import SignIn from "./components/SignIn";
 import Search from "./components/Search";
 import Challenges from "./components/Challenges";
+import Notifications from "./components/Notifications";
 
 const Stack = createStackNavigator();
 
@@ -24,7 +27,7 @@ class App extends React.Component {
 	<Stack.Navigator>
 	  <Stack.Screen
 	    name="Home"
-	    component={Feed}
+	    component={Home}
 	    options={{ title: "Challenges" }}
 	  />
 	  <Stack.Screen
@@ -43,18 +46,13 @@ class App extends React.Component {
 	    options={{ title: "Settings" }}
 	  />
 	  <Stack.Screen
-	    name="Registration"
+	    name="Register"
 	    component={Registration}
 	    options={{ title: "Registration" }}
 	  />
 	  <Stack.Screen
-	    name="Sign In"
-	    component={SignIn}
-	    options={{ title: "Sign In" }}
-	  />
-	  <Stack.Screen
 	    name="Search"
-	    component={Feed}
+	    component={Search}
 	    options={{ title: "Search" }}
 	  />
 	</Stack.Navigator>

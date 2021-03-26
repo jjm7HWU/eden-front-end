@@ -21,8 +21,6 @@ function Search({ navigation }) {
       terms: searchQuery.split(" ")
     };
     postMethodFetch(submission, "/post/search", (res) => {
-      console.log(submission);
-      console.log(res);
       setUserSearchResults(res[0].data);
       setPostSearchResults(res[1].data);
       setChallengeSearchResults(res[2].data);
@@ -43,7 +41,7 @@ function Search({ navigation }) {
 	  <Text>{post}</Text>
 	))}
 	{postSearchResults.map(item => (
-	  <Post data={{ ref: item }}/>
+	  <Post navigation={navigation} data={{ ref: item }}/>
 	))}
       </ScrollView>
       <NavBar navigation={navigation}/>

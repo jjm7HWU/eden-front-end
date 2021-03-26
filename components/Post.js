@@ -11,11 +11,9 @@ function Post(props) {
   const [comments,setComments] = useState([]);
 
   useEffect(() => {
-    console.log({YUP: props.data.ref})
     fetch(`${DOMAIN_NAME}/api/comments/${props.data.ref}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       setComments(data);
     })
     .catch(() => console.log("NETWORK ERROR"));
@@ -23,7 +21,6 @@ function Post(props) {
     .then(res => res.json())
     .then(data => {
       setData(data);
-      console.log(data);
     })
     .catch(() => console.log("NETWORK ERROR"));
 
@@ -35,20 +32,13 @@ function Post(props) {
 
       <View style={flexbox}>
 	<Image style={styles.profilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${data.poster}` }} />
-	<Text style={styles.username}>{data.poster}</Text>
+	<TouchableOpacity onPress={() => props.navigation.navigate("Profile", { username: data.poster })}><Text style={styles.username}>{data.poster}</Text></TouchableOpacity>
       </View>
 
       <View style={styles.imageContainer}>
-	<FlatList
-	  data={props.data.refs}
-	  renderItem={({item, index}) => (
-	    <Image
-	      style={styles.image}
-	      source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${item}` }}
-	      key={index}
-	    />
-	  )}
-	  horizontal={true}
+	<Image
+	  style={styles.image}
+	  source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${props.data.ref}` }}
 	/>
       </View>
 
@@ -89,8 +79,8 @@ const styles = StyleSheet.create({
     marginBottom: 0.3 * rem
   },
   image: {
-    width: 10 * rem,
-    height: 10 * rem
+    width: "100%",
+    height: "100%"
   },
   username: {
     marginLeft: 0.2 * rem,

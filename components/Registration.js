@@ -19,7 +19,6 @@ function Registration({ navigation }) {
   const submit = () => {
     const submission = { email, username, password1, password2 }
     postMethodFetch(submission, "/post/register", (res) => {
-      console.log(res);
       if (res.valid) {
 
       }
