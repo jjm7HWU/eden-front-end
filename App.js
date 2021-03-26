@@ -13,6 +13,7 @@ import Settings from "./components/Settings";
 import Registration from "./components/Registration";
 import SignIn from "./components/SignIn";
 import Search from "./components/Search";
+import Challenges from "./components/Challenges";
 
 const Stack = createStackNavigator();
 
@@ -23,8 +24,8 @@ class App extends React.Component {
 	<Stack.Navigator>
 	  <Stack.Screen
 	    name="Home"
-	    component={Search}
-	    options={{ title: "Feed" }}
+	    component={Challenges}
+	    options={{ title: "Challenges" }}
 	  />
 	  <Stack.Screen
 	    name="Leaderboard"

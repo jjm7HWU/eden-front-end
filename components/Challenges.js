@@ -1,0 +1,40 @@
+import React, { useEffect, useState } from 'react';
+import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ChallengeCard from "./ChallengeCard";
+import NavBar from "./NavBar";
+import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
+import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
+
+function Challenges({ navigation }) {
+
+  const [rows,setRows] = useState([[0,0,0], [0,0], [0,0,0,0,0]])
+
+  return (
+    <View style={appBodyStyle}>
+      <ScrollView style={scrollViewStyle}>
+
+	{rows.map(row => (
+	  <>
+	    <Text style={text}>Bugs</Text>
+	    <FlatList
+	      data={[0,0,0]}
+	      renderItem={({item}) => <ChallengeCard id={0} />}
+	      horizontal={true}
+	      style={styles.row}
+	    />
+	  </>
+	))}
+
+      </ScrollView>
+      <NavBar navigation={navigation}/>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  row: {
+    marginBottom: rem
+  }
+});
+
+export default Challenges;
