@@ -17,6 +17,7 @@ import SignIn from "./components/SignIn";
 import Search from "./components/Search";
 import Challenges from "./components/Challenges";
 import Notifications from "./components/Notifications";
+import ProfileList from "./components/ProfileList";
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,11 @@ class App extends React.Component {
 	    name="Search"
 	    component={Search}
 	    options={{ title: "Search" }}
+	  />
+	  <Stack.Screen
+	    name="ProfileList"
+	    component={ProfileList}
+	    options={{ title: "Profile List" }}
 	  />
 	</Stack.Navigator>
       </NavigationContainer>

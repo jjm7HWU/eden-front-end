@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { DOMAIN_NAME, appBodyStyle, scrollViewStyle, rem } from "../global-variables";
 import GLOBAL from "../GLOBAL";

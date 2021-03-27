@@ -8,12 +8,8 @@ import { postMethodFetch } from "../functions";
 
 function Feed({ navigation }) {
 
-  const [data,setData] = useState([
-    { ref: "953974780674271500" },
-    { ref: "953974780674271500" },
-    { ref: "93727279480472630000" },
-    { ref: "953974780674271500" }
-  ]);
+  const [items,setItems] = useState([]);
+  const [content,setContent] = useState([]);
 
   useEffect(() => {
     const submission = {
@@ -21,17 +17,23 @@ function Feed({ navigation }) {
       key: GLOBAL.KEY
     }
     postMethodFetch(submission, "/api_custom/feed", res => {
-      setData(res.feed)
+      updateData(res.feed);
     });
   }, []);
+
+  const updateData = (feed) => {
+    let refArgs = feed.map(item => item.ref).join("+");
+    fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
+    .then(res => res.json())
+    .then(data => {
+      setContent(data);
+    })
+  };
 
   return (
     <View style={appBodyStyle}>
       <ScrollView style={scrollViewStyle}>
-	<FlatList
-	  data={data}
-	  renderItem={({item, index}) => (<Post navigation={navigation} data={item} />)}
-	/>
+	{content.map(item => <Post navigation={navigation} data={item} />)}
       </ScrollView>
       <NavBar navigation={navigation} />
     </View>

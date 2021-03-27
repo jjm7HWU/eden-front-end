@@ -1,38 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Button, Image, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import NavBar from "./NavBar";
+import { Button, Image, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { postMethodFetch } from "../functions";
 import { DOMAIN_NAME, containerStyle, rem } from "../global-variables";
 import { SMALL_TEXT_SIZE, flexbox, textSmall } from "./styles";
-import NavBar from "./NavBar";
+import GLOBAL from "../GLOBAL";
 
 function Post(props) {
 
   const [data,setData] = useState({});
   const [comments,setComments] = useState([]);
+  const [commentInput,setCommentInput] = useState("");
 
-  useEffect(() => {
-    fetch(`${DOMAIN_NAME}/api/comments/${props.data.ref}`)
-    .then(res => res.json())
-    .then(data => {
-      setComments(data);
-    })
-    .catch(() => console.log("NETWORK ERROR"));
-    fetch(`${DOMAIN_NAME}/api/photo/${props.data.ref}`)
-    .then(res => res.json())
-    .then(data => {
-      setData(data);
-    })
-    .catch(() => console.log("NETWORK ERROR"));
-
-  }, []);
-
+  const postComment = () => {
+    console.log("POSTING COMMENT");
+    const submission = {
+      ref: props.data.ref,
+      comment: commentInput,
+      sourceUser: GLOBAL.USERNAME,
+      key: GLOBAL.KEY
+    };
+    console.log(submission);
+    postMethodFetch(submission, "/post/comment", res => {
+      console.log(res);
+    });
+  }
 
   return (
     <View style={styles.container}>
 
       <View style={flexbox}>
-	<Image style={styles.profilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${data.poster}` }} />
-	<TouchableOpacity onPress={() => props.navigation.navigate("Profile", { username: data.poster })}><Text style={styles.username}>{data.poster}</Text></TouchableOpacity>
+	<Image style={styles.profilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${props.data.poster}` }} />
+	<TouchableOpacity onPress={() => props.navigation.navigate("Profile", { username: props.data.poster })}><Text style={styles.username}>{props.data.poster}</Text></TouchableOpacity>
       </View>
 
       <View style={styles.imageContainer}>
@@ -45,16 +44,26 @@ function Post(props) {
       <View style={flexbox}>
 	<View style={styles.iconsContainer} >
 	  <Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/comment.svg" }} />
-	  <Text style={styles.iconNumber}>3</Text>
+	  <Text style={styles.iconNumber}>{props.data.comments}</Text>
 	  <Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/heart.svg" }} />
-	  <Text style={styles.iconNumber}>{data.hearts}</Text>
+	  <Text style={styles.iconNumber}>{props.data.hearts}</Text>
 	</View>
 	<View>
-	  <Text style={textSmall}>{data.location}</Text>
+	  <Text style={textSmall}>{props.data.location}</Text>
 	</View>
       </View>
 
-      <Text style={textSmall}>{data.caption}</Text>
+      <Text style={textSmall}>{props.data.caption}</Text>
+
+      {comments.map(item => <Text>{item.comment}</Text>)}
+
+      <View>
+	<TextInput
+	  placeholder={"Leave a comment"}
+	  onChangeText={ (text) => setCommentInput(text) }
+	/>
+	<Button onPress={postComment} />
+      </View>
 
     </View>
   );

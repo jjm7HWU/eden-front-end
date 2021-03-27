@@ -3,7 +3,7 @@ import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity
 import { DOMAIN_NAME, appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { EXTRA_SMALL_TEXT_SIZE, LARGE_TEXT_SIZE, SMALL_TEXT_SIZE, TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
 
-function ProfileCard({ username }) {
+function ProfileCard({ username, navigation }) {
 
   const [data,setData] = useState({});
   const [comments,setComments] = useState([]);

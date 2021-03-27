@@ -11,20 +11,30 @@ function Profile(props) {
 
   const [username,setUsername] = useState(props.route.params ? props.route.params.username : username || props.username || GLOBAL.USERNAME);
   const [profileData,setProfileData] = useState({})
-  const [posts,setPosts] = useState([]);
+  const [content,setContent] = useState([]);
 
   useEffect(() => {
-    fetch(`${DOMAIN_NAME}/api/activity/${username}`)
-    .then(res => res.json())
-    .then(data => {
-      setPosts(data.activity);
-    })
     fetch(`${DOMAIN_NAME}/api/user/${username}`)
     .then(res => res.json())
     .then(data => {
       setProfileData(data);
     })
-  }, [])
+    fetch(`${DOMAIN_NAME}/api/activity/${username}`)
+    .then(res => res.json())
+    .then(data => {
+      updateData(data.activity);
+    });
+  }, []);
+
+  const updateData = (activity) => {
+    let refArgs = activity.map(item => item.ref).join("+");
+    fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
+    .then(res => res.json())
+    .then(data => {
+      setContent(data);
+    })
+  };
+
 
   const onFollow = () => {
     const submission = {
@@ -52,12 +62,12 @@ function Profile(props) {
 	</View>
 
 	<View style={flexbox}>
-	  <Text style={styles.text}>{profileData.followers} follower{profileData.followers !== 1 ? "s" : ""}</Text>
-	  <Text style={styles.text}>{profileData.following} following</Text>
+	  <TouchableOpacity style={styles.text} onPress={() => props.navigation.navigate("ProfileList", { api: "followers", username })}><Text style={styles.text}>{profileData.followers} follower{profileData.followers !== 1 ? "s" : ""}</Text></TouchableOpacity>
+	  <TouchableOpacity style={styles.text} onPress={() => props.navigation.navigate("ProfileList", { api: "following", username })}><Text style={styles.text}>{profileData.following} following</Text></TouchableOpacity>
 	  {GLOBAL.USERNAME !== username ? <TouchableOpacity onPress={() => onFollow()} style={buttonStyle}><Text style={styles.text}>Follow</Text></TouchableOpacity> : <></>}
 	</View>
 
-	{posts.map(item => (
+	{content.map(item => (
 	  <Post navigation={props.navigation} data={item} />
 	))}
 

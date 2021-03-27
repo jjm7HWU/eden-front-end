@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   text: {
-    fontSize: 0.5 * rem,
+    fontSize: 0.7 * rem,
     textAlign: "center"
   }
 });

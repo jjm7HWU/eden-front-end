@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import Post from "./Post";
 import ProfileCard from "./ProfileCard";
 import TextInputPair from "./TextInputPair";
-import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
+import { DOMAIN_NAME, appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { postMethodFetch } from "../functions";
 import { buttonStyle, flexbox } from "./styles";
 
@@ -12,8 +12,8 @@ function Search({ navigation }) {
 
   const [searchQuery,setSearchQuery] = useState("");
   const [userSearchResults,setUserSearchResults] = useState([]);
-  const [postSearchResults,setPostSearchResults] = useState([]);
   const [challengeSearchResults,setChallengeSearchResults] = useState([]);
+  const [postContent,setPostContent] = useState([]);
 
   const submit = () => {
     const submission = {
@@ -22,9 +22,23 @@ function Search({ navigation }) {
     };
     postMethodFetch(submission, "/post/search", (res) => {
       setUserSearchResults(res[0].data);
-      setPostSearchResults(res[1].data);
       setChallengeSearchResults(res[2].data);
+
+      // render posts
+      let refArgs = res[1].data.map(item => item).join("+");
+      if (refArgs.length !== 0) {
+	fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
+	.then(res => res.json())
+	.then(data => {
+	  console.log("SEARCH");
+	  console.log(data);
+	  setPostContent(data);
+	});
+      }
     });
+  };
+
+  const updateData = (activity) => {
   };
 
   return (
@@ -40,8 +54,8 @@ function Search({ navigation }) {
 	{challengeSearchResults.map(challenge => (
 	  <Text>{post}</Text>
 	))}
-	{postSearchResults.map(item => (
-	  <Post navigation={navigation} data={{ ref: item }}/>
+	{postContent.map(item => (
+	  <Post navigation={navigation} data={item}/>
 	))}
       </ScrollView>
       <NavBar navigation={navigation}/>
