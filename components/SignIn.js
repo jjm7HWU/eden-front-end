@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Button, ScrollView, Text, View } from 'react-native';
-import NavBar from "./NavBar";
-import TextInputPair from "./TextInputPair";
+import FormAttribute from "./FormAttribute";
 import { appBodyStyle, scrollViewStyle } from "../global-variables";
 import GLOBAL from "../GLOBAL";
 import { postMethodFetch } from "../functions";
-import { buttonStyle } from "./styles";
+import { buttonStyle, logoStyle } from "./styles";
 
 function SignIn({ navigation, onSignIn }) {
 
@@ -28,12 +27,12 @@ function SignIn({ navigation, onSignIn }) {
   return (
     <View style={appBodyStyle}>
       <ScrollView style={scrollViewStyle}>
+	<Text style={logoStyle}>eden</Text>
 	<Text>{error}</Text>
-	<TextInputPair heading="Email" onChangeText={ setEmailInput } />
-	<TextInputPair heading="Password" onChangeText={ setPasswordInput } />
+	<FormAttribute heading="Email" onChangeText={ setEmailInput } />
+	<FormAttribute heading="Password" onChangeText={ setPasswordInput } />
 	<Button title="Sign In" style={buttonStyle} onPress={() => submit()}/>
       </ScrollView>
-      <NavBar navigation={navigation}/>
     </View>
   );
 

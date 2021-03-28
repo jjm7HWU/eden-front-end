@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Button, ScrollView, Text, View } from 'react-native';
-import NavBar from "./NavBar";
-import TextInputPair from "./TextInputPair";
+import FormAttribute from "./FormAttribute";
 import { appBodyStyle, scrollViewStyle } from "../global-variables";
 import { postMethodFetch } from "../functions";
-import { buttonStyle } from "./styles";
+import { buttonStyle, logoStyle } from "./styles";
 
 function Registration({ navigation }) {
 
@@ -32,17 +31,17 @@ function Registration({ navigation }) {
 
   return (
     <View style={appBodyStyle}>
+      <Text style={logoStyle}>eden</Text>
       <ScrollView style={scrollViewStyle}>
-	<Text>{emailError}</Text>
-	<TextInputPair heading="Email" onChangeText={ setEmailInput } />
 	<Text>{usernameError}</Text>
-	<TextInputPair heading="Username" onChangeText={ setUsernameInput } />
+	<FormAttribute heading="Username" onChangeText={ setUsernameInput } />
+	<Text>{emailError}</Text>
+	<FormAttribute heading="Email" onChangeText={ setEmailInput } />
 	<Text>{passwordError}</Text>
-	<TextInputPair heading="Password" onChangeText={ setPassword1Input } />
-	<TextInputPair heading="Confirm Password" onChangeText={ setPassword2Input } />
-	<Button title="Update Settings" style={buttonStyle} onPress={() => submit()}/>
+	<FormAttribute heading="Password" onChangeText={ setPassword1Input } />
+	<FormAttribute heading="Confirm Password" onChangeText={ setPassword2Input } />
+	<Button title="Create Account" style={buttonStyle} onPress={() => submit()}/>
       </ScrollView>
-      <NavBar navigation={navigation}/>
     </View>
   );
 

@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 
-export const DOMAIN_NAME = "http://localhost:5000";
+export const DOMAIN_NAME = "http://46.101.88.105";
 
 export let width = Dimensions.get("window").width;
 export let height = Dimensions.get("window").height;

@@ -1,8 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Button, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
-import NavBar from "./NavBar";
 import { DOMAIN_NAME } from "../global-variables";
 
 function Leaderboard({ navigation }) {
@@ -27,7 +25,6 @@ function Leaderboard({ navigation }) {
 	    <LeaderboardItem position={index + 1} data={item}/>
 	)}
       />
-      <NavBar navigation={navigation} />
     </View>
   );
 }

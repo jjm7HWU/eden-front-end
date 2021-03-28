@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Post from "./Post";
-import NavBar from "./NavBar";
 import { postMethodFetch } from "../functions";
 import { DOMAIN_NAME, appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
@@ -31,8 +30,9 @@ function Profile(props) {
     fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       setContent(data);
-    })
+    });
   };
 
 
@@ -73,7 +73,6 @@ function Profile(props) {
 
       </ScrollView>
 
-      <NavBar navigation={props.navigation}/>
     </>
   );
 }

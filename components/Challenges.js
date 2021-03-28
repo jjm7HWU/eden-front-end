@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ChallengeCard from "./ChallengeCard";
-import NavBar from "./NavBar";
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
 
@@ -26,7 +25,6 @@ function Challenges({ navigation }) {
 	))}
 
       </ScrollView>
-      <NavBar navigation={navigation}/>
     </View>
   );
 }

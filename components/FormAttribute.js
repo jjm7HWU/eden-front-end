@@ -4,7 +4,7 @@ import { postMethodFetch } from "../functions";
 import { rem } from "../global-variables";
 import { COLOR_EXTRA_LIGHT_GRAY, SMALL_TEXT_SIZE, button, flexbox, textInputStyle, textSmall } from "./styles";
 
-function TextInputPair({ heading, onChangeText }) {
+function FormAttribute({ heading, onChangeText }) {
 
   return (
     <View style={styles.container}>
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TextInputPair;
+export default FormAttribute;

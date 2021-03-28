@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import NavBar from "./NavBar";
-import { Button, Image, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import TextSubmit from "./TextSubmit";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { postMethodFetch } from "../functions";
-import { DOMAIN_NAME, containerStyle, rem } from "../global-variables";
-import { SMALL_TEXT_SIZE, flexbox, textSmall } from "./styles";
+import { DOMAIN_NAME, rem } from "../global-variables";
+import { COLOR_CYAN, SMALL_TEXT_SIZE, flexbox, textSmall } from "./styles";
 import GLOBAL from "../GLOBAL";
 
 function Post(props) {
@@ -13,18 +13,31 @@ function Post(props) {
   const [commentInput,setCommentInput] = useState("");
 
   const postComment = () => {
-    console.log("POSTING COMMENT");
     const submission = {
+      action: "comment",
       ref: props.data.ref,
       comment: commentInput,
       sourceUser: GLOBAL.USERNAME,
       key: GLOBAL.KEY
     };
-    console.log(submission);
-    postMethodFetch(submission, "/post/comment", res => {
+    postMethodFetch(submission, "/interact", res => {
       console.log(res);
     });
   }
+
+  const leaveHeart = () => {
+    console.log("HEART");
+    const submission = {
+      action: "heart",
+      ref: props.data.ref,
+      sourceUser: GLOBAL.USERNAME,
+      key: GLOBAL.KEY
+    };
+    console.log(submission);
+    postMethodFetch(submission, "/interact", res => {
+      console.log(res);
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -45,7 +58,7 @@ function Post(props) {
 	<View style={styles.iconsContainer} >
 	  <Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/comment.svg" }} />
 	  <Text style={styles.iconNumber}>{props.data.comments}</Text>
-	  <Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/heart.svg" }} />
+	  <TouchableOpacity onPress={leaveHeart}><Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/heart.svg" }} /></TouchableOpacity>
 	  <Text style={styles.iconNumber}>{props.data.hearts}</Text>
 	</View>
 	<View>
@@ -55,15 +68,11 @@ function Post(props) {
 
       <Text style={textSmall}>{props.data.caption}</Text>
 
+      <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
+
       {comments.map(item => <Text>{item.comment}</Text>)}
 
-      <View>
-	<TextInput
-	  placeholder={"Leave a comment"}
-	  onChangeText={ (text) => setCommentInput(text) }
-	/>
-	<Button onPress={postComment} />
-      </View>
+      <TextSubmit style={styles.button} placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onPress={postComment} />
 
     </View>
   );
@@ -108,6 +117,12 @@ const styles = StyleSheet.create({
     fontSize: SMALL_TEXT_SIZE,
     marginLeft: 0.4 * rem,
     marginRight: 0.4 * rem
+  },
+  hashtags: {
+    color: COLOR_CYAN
+  },
+  button: {
+    backgroundColor: "red"
   }
 });
 

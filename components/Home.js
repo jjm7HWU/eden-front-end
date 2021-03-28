@@ -3,7 +3,6 @@ import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View 
 import { DOMAIN_NAME, appBodyStyle, scrollViewStyle, rem } from "../global-variables";
 import GLOBAL from "../GLOBAL";
 import Feed from "./Feed";
-import NavBar from "./NavBar";
 import SignIn from "./SignIn";
 import { postMethodFetch } from "../functions";
 

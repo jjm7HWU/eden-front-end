@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
 import { DOMAIN_NAME, appBodyStyle, scrollViewStyle } from "../global-variables";
 import GLOBAL from "../GLOBAL";
@@ -29,7 +28,6 @@ function ProfileList(props) {
       <ScrollView style={scrollViewStyle}>
 	{data.map(item => <ProfileCard username={item} navigation={props.navigation} />)}
       </ScrollView>
-      <NavBar navigation={props.navigation}/>
     </View>
   );
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { DOMAIN_NAME, appBodyStyle, scrollViewStyle, rem } from "../global-variables";
 import GLOBAL from "../GLOBAL";
-import NavBar from "./NavBar";
 import Notification from "./Notification";
 import Post from "./Post";
 import { postMethodFetch } from "../functions";
@@ -26,7 +25,6 @@ function Notifications({ navigation }) {
       <ScrollView style={scrollViewStyle}>
 	{data.map(item => <Notification data={item} />)}
       </ScrollView>
-      <NavBar navigation={navigation} />
     </View>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ScrollView, View } from 'react-native';
-import NavBar from "./NavBar";
-import TextInputPair from "./TextInputPair";
+import FormAttribute from "./FormAttribute";
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { postMethodFetch } from "../functions";
 import { buttonStyle } from "./styles";
@@ -23,13 +22,12 @@ function Settings({ navigation }) {
   return (
     <View style={appBodyStyle}>
       <ScrollView style={scrollViewStyle}>
-	<TextInputPair heading="Username" onChangeText={ setUsernameInput } />
-	<TextInputPair heading="Area" onChangeText={ setAreaInput } />
-	<TextInputPair heading="Country" onChangeText={ setCountryInput } />
-	<TextInputPair heading="Bio" onChangeText={ setBioInput } />
+	<FormAttribute heading="Username" onChangeText={ setUsernameInput } />
+	<FormAttribute heading="Area" onChangeText={ setAreaInput } />
+	<FormAttribute heading="Country" onChangeText={ setCountryInput } />
+	<FormAttribute heading="Bio" onChangeText={ setBioInput } />
 	<Button title="Update Settings" style={buttonStyle} onPress={() => submit()}/>
       </ScrollView>
-      <NavBar navigation={navigation}/>
     </View>
   );
 
